@@ -1,0 +1,82 @@
+<!DOC>
+<html>
+<style type="text/css">
+	/*@import "compass/css3";*/
+
+/*	@keyframes fadeInP {
+	  to {
+	    stroke-dashoffset: 0;
+	  }
+	}*/
+	.animate {
+	  stroke-dashoffset: 1000;
+	  /*animation: fadeInP 10s linear infinite;*/
+	}
+
+	/*
+	CSS animations don't work for this in IE and neither do SMIL animations.
+	*/
+</style>
+<script type="text/javascript" src="../lib/d3.js"></script>
+<script type="text/javascript" src="../marchingant/area_ma.js"></script>
+<head>
+
+
+</head>
+<body>
+	<svg viewBox="0 0 400 400">
+		<g>
+			<rect x="0" y="0" width="70px" height="70px" style="fill:black" />
+		</g>
+
+		<g style="transform: translate(10px, 10px) scale(1.2, 1.2)">
+			 <rect  style="fill:red" x="0" y="0" width="70px" height="70px" />
+		</g>
+
+	<!-- 	<g transform="translate(0, 20)">
+			 <rect x="0" y="0" width="70px" height="70px" style="fill:green" />
+		</g> -->
+	
+<!-- 	 <line class="animate" style="stroke:rgb(255,0,0);stroke-width:2; stroke-dasharray:10 20;" x1="0" y1="100" x2="200" y2="100" /> -->
+
+<!-- 	 <path class="animate" stroke-width='8' stroke-dasharray="10 2"  fill='none' stroke="#000" d="M 0,0 C 100,10 200,80 300,15 " />
+
+    <line stroke-dasharray="10" stroke="#000" x1="10" y1="90" x2="190" y2="90" />
+
+	 <rect x="25" y="105" width="70px" height="70px" style="fill:black" />
+
+	 <path stroke-width='3' class="animate" stroke-dasharray="10 2" fill='none' stroke="#000" d="M 20,100 L 100,100 L 100,180 L 20,180 L 20,100" /> -->
+
+	<!-- <line x1="76.043" y1="297.638" x2="120.246" y2="253.435"/> -->
+
+	<!--  <path stroke-width='2' class="animate" d='M83.226,311.278 103.306,289.489 109.123,283.673 124.245,298.797 124.247,248.728 74.176,248.728 
+		89.299,263.85 83.484,269.665 63.402,291.455 83.226,311.278 ' stroke-dasharray="4 4" fill='none' stroke="#000"/> -->
+	<!--  <path stroke-width='3' class="animate" d='M82.772,304.367 106.03,281.109 109.978,277.161 120.245,287.429 120.247,253.436 86.252,253.436 96.519,263.703 
+		92.571,267.65 69.314,290.908 ' /> -->
+
+	</svg>
+</body>
+
+<script type="text/javascript">
+
+	// var liDoms = document.querySelectorAll('.animate');
+	// offset = 11;
+
+	// var offsetMe = function() {
+	//   if(offset < 0) offset = 11;
+	//   // d3.selectAll(".animate")
+	//   	// .style('strokeDashoffset', offset);
+	//   for(var i = 0; i < liDoms.length; i ++)
+	//   	liDoms[i].style.strokeDashoffset = offset;
+	//   offset--;	  
+	// }
+
+	// setInterval(function(){
+	// 	offsetMe();
+	// }, 200);
+
+	// offsetMe();
+
+</script>
+
+</html>

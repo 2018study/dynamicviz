@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+	<script type="text/javascript" src="../lib/d3.js"></script>
+	<script type="text/javascript" src="../lib/jquery.js"></script>
+</head>
+<body>
+	<div>
+		<svg style="width: 500px; height: 500px">
+			<g>
+				<rect id='singlelinear' width="200px" height="60px" style="fill: black"></rect>				
+			</g>
+			<g transform="translate(0, 80)">
+				<rect id='bilinear' width="200px" height="60px" style="fill: black"></rect>
+			</g>
+			<g transform="translate(0, 160)">
+				<circle id="radial" r='40px' cx="40px" cy="40px" style='fill:black'></circle>
+			</g>
+			<g transform="translate(0, 240)">
+				<path id="singlepath"></path>
+			</g>
+		</svg>
+	</div>
+</body>
+<script type="text/javascript" src='../light/innerlight.js'></script>
+<script type="text/javascript" src="../light/gradientgenerator.js"></script>
+<script type="text/javascript">
+	//add the path	
+	//The data for our line
+	// var lineData = [[0, 50], [100, 80], [200, 60], [200, 60], [400, 30], [0, 50]];
+	var lineData = [[157.071,143.218],[103.338,130.027],[62.01,166.812],[57.951,111.633],[10.194,83.695],[61.418,62.783],[73.232,8.73],[108.949,50.986],[164.007,45.518],[134.857,92.544],[157.071,143.218]]
+	//This is the accessor function we talked about above
+	var lineFunction = d3.line(lineData);
+	  // .x(function(d) { return d.x; })
+	  // .y(function(d) { return d.y; });
+
+
+	// var lineData = [ 
+	//   { "x": 1,   "y": 5},  
+	//   { "x": 20,  "y": 20},
+	//   { "x": 40,  "y": 10}, 
+	//   { "x": 60,  "y": 40},
+	//   { "x": 80,  "y": 5},  
+	//   { "x": 100, "y": 60}
+	// ];
+	  
+	//The line SVG Path we draw
+	var lineGraph = d3.select('#singlepath')
+	  .attr("d", lineFunction(lineData))
+	  .attr("stroke", "black")
+	  .attr("stroke-width", 2)
+	  .attr("fill", "red");
+
+</script>
+<script type="text/javascript">
+	
+	var gradientGenerator = new GradientGenerator();
+	var intervalStepNum = 10;
+
+	var liSingleLightId = gradientGenerator.getSingleWhiteLights(intervalStepNum);
+	var liRadialLightId = gradientGenerator.getRadialWhiteLights(intervalStepNum);
+	var liBiLightId = gradientGenerator.getBiWhiteLights(intervalStepNum);
+	
+	var siRect = d3.select('#singlelinear')
+	var circle = d3.select('#radial');
+	var biRect = d3.select('#bilinear');	
+	var lineGraph = d3.select('#singlepath')
+
+	biLightRect = new AnimatedInnerLightDom(biRect, liBiLightId, 0, 1);
+	singleLightRect = new AnimatedInnerLightDom(siRect, liSingleLightId, 0, 1);
+	lightCircle = new AnimatedInnerLightDom(circle, liRadialLightId, 0, 1);
+	singleLightPath = new AnimatedInnerLightDom(lineGraph, liBiLightId, 0, 1);
+
+
+	var lightDomManager = [];
+	lightDomManager.push(biLightRect)
+	lightDomManager.push(singleLightRect)
+	lightDomManager.push(lightCircle)
+	lightDomManager.push(singleLightPath)
+	var loopTimeIndex = intervalStepNum
+
+	var timeIndex = 0;
+	setInterval(function(){
+		for(var i = 0; i < lightDomManager.length; i ++){
+			var lightDom = lightDomManager[i]
+			lightDom.animatebyTimeIndex(timeIndex);
+		}
+		if(timeIndex > loopTimeIndex)
+			timeIndex = 0
+		else
+			timeIndex += 1;
+	}, 200);
+
+</script>

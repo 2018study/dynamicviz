@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src= "{{static_url('./example/js/comm/draggable.js')}}"></script>
+  <script type="text/javascript" src="{{static_url('./lib/paper-full.js')}}"></script>
+  <script type="text/javascript" src="{{static_url('./lib/d3.js')}}"></script>
+  <script type="text/javascript" src="{{static_url('./lib/lurlquery.js')}}"></script>
+  <script type="text/javascript" src="{{static_url('./lib/jquery.js')}}"></script>
+  <script type="text/javascript" src="{{static_url('./lib/jscolor.min.js')}}"></script
+  <script type="text/javascript" src="{{static_url('./light/innerlight.js')}}"></script>
+  <script type="text/javascript" src="{{static_url('./lib/EventEmitter.js')}}"></script>
+  <script type="text/javascript" src="{{static_url('./light/gradientgenerator.js')}}"></script>
+
+  <script type="text/javascript" src="{{static_url('./example/draw/boxplot.js')}}"></script>
+  <script type="text/javascript" src="{{static_url('./example/draw/bubble.js')}}"></script>
+  <script type="text/javascript" src="{{static_url('./example/draw/graph.js')}}"></script>
+  <script type="text/javascript" src="{{static_url('./example/draw/scatterplot.js')}}"></script>
+  <script type="text/javascript" src="{{static_url('./example/draw/Playfair1821Pric.js')}}"></script>
+
+  <script type="text/javascript" src="{{static_url('./example/js/geometrydefiner.js')}}"></script>
+  <script type="text/javascript" src="{{static_url('./example/js/geometrysaver.js')}}"></script>
+  <script type="text/javascript" src="{{static_url('./example/js/animateeditor.js')}}"></script>
+  <script type="text/javascript" src="{{static_url('./example/js/animateenhancer.js')}}"></script>
+  <script type="text/javascript" src="{{static_url('./example/js/animatedommanager.js')}}"></script>
+  <script type="text/javascript" src="{{static_url('./example/js/functionhub.js')}}"></script>
+<style>
+* {box-sizing: border-box}
+body {font-family: Verdana, sans-serif; margin:0}
+.mySlides {display: none, width: 100%, height: 100%;}
+img {vertical-align: middle;}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  max-height: 800px;
+  position: relative;
+  margin: auto;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  /*top: 50%;*/
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: 'black';
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .prev, .next,.text {font-size: 11px}
+}
+</style>
+</head>
+<body>
+
+<div class="slideshow-container">
+
+<div style="text-align:center; padding-top: 150px; padding-bottom: 50px">
+  <span class="dot" onclick="currentSlide(1)"></span> 
+  <span class="dot" onclick="currentSlide(2)"></span> 
+  <span class="dot" onclick="currentSlide(3)"></span> 
+</div>
+
+<!-- Test 1-1 page -->
+<div class="mySlides fade">
+  <img src="{{static_url('./img/white.png')}}" style="width:100%;">
+  <div>
+    <h3> Which bar decrease/increase the fastest?</h3>
+    <input type='checkbox' value="geometry" checked>Defined Geometry </input>
+    <input type='checkbox' value="handler" checked>Geometry Handler </input>
+  </div>
+</div>
+
+<div class="mySlides fade">
+  <img src="{{static_url('./img/barchart.png')}}" style="width:100%; padding-top: 100px">
+  <div>
+    <h3> Which bar decrease/increase the fastest?</h3>
+    <input type='checkbox' value="geometry" checked>Defined Geometry </input>
+    <input type='checkbox' value="handler" checked>Geometry Handler </input>
+  </div>
+</div>
+
+<!-- Test 2 -->
+<div class="mySlides fade">
+  <img src="{{static_url('./img/white.png')}}" style="width:100%; padding-top: 100px">
+  <div>
+    <h3> Which bar decrease/increase the fastest?</h3>
+    <input type='checkbox' value="geometry" checked>Defined Geometry </input>
+    <input type='checkbox' value="handler" checked>Geometry Handler </input>
+  </div>
+</div>
+
+<!-- Test 3 -->
+<div class="mySlides fade">
+  <img src="{{static_url('./img/white.png')}}" style="width:100%; padding-top: 100px">
+  <div>
+    <h3> Which bar decrease/increase the fastest?</h3>
+    <input type='checkbox' value="geometry" checked>Defined Geometry </input>
+    <input type='checkbox' value="handler" checked>Geometry Handler </input>
+  </div>
+</div>
+
+<!-- <a class="prev" onclick="plusSlides(-1)">&#10094;</a> -->
+<a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+</div>
+
+<div id="coverdiv" style="position: absolute;">   
+  <svg style="position: absolute; width: 100%; height: 100%" id="coversvg"></svg>
+  <canvas style="position: absolute; width: 100%; height: 100%" id="aecanvas"></canvas>
+</div>
+
+<div id="antarea" style="height: 100px; overflow: scroll; display: none">
+</div>
+
+<div id="maarea" style="height: 150px; overflow: scroll; display: none">
+      <ul id="magroupul"></ul>
+</div>
+
+<br>
+
+<script>
+
+var slideIndex = 1;
+initSvgCanvas();
+showSlides(slideIndex);
+
+function initSvgCanvas(){
+
+  var imgBox = $('img')[0].getBoundingClientRect();
+  console.log(' img box ', imgBox)
+  d3.select('#coverdiv')
+  .style('top', imgBox.top + 'px')
+  .style('left', imgBox.left + 'px')
+  .style('width', imgBox.width + 'px')
+  .style('height', imgBox.height + 'px')
+
+  var canvas = document.getElementById('aecanvas');
+  // Create an empty project and a view for the canvas:
+  paper.setup(canvas);
+  paper.install(window);
+  paper.view.draw();
+}
+
+function boxplot(){
+
+  var example = 'boxplot'
+  g_functionHub = new FunctionHub(example);
+
+  drawBoxplot();
+  var result = autoBoxplotMA();
+  var antModal = result['antmodal']
+  var allGroupMap = result['groups']
+  var liGroupId = Object.keys(allGroupMap);
+  for(var i = 0; i < liGroupId.length; i ++){
+    var groupId = liGroupId[i];
+    var tempGroup = allGroupMap[groupId];
+    g_functionHub.addMAbyGroupwithExampleAnt(tempGroup, antModal);
+  }
+  g_functionHub.setFunc({type: 'animate'})
+
+}
+
+function graph(){
+  drawGraph()
+}
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";       
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+
+ switch(slideIndex-1){
+    case 0:
+      //clear
+      boxplot();
+      break;
+    case 1:
+      //clear
+      graph();
+      break;
+  }
+  dots[slideIndex-1].className += " active";
+}
+</script>
+
+</body>
+</html> 
